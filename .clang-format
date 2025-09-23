@@ -1,0 +1,4 @@
+BasedOnStyle: Microsoft
+NamespaceIndentation: None
+
+ColumnLimit: 120

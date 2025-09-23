@@ -1,0 +1,6 @@
+#ifndef OXHERDCPP_LIBRARY_H
+#define OXHERDCPP_LIBRARY_H
+
+void hello();
+
+#endif // OXHERDCPP_LIBRARY_H
