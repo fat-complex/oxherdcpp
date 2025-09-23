@@ -4,10 +4,10 @@
 #include <string>
 #include <unordered_map>
 
-#include <oxherdcpp/common/helper_macros.h>
-#include <oxherdcpp/common/memory.h>
 #include <oxherdcpp/actor/actor_id_generator.h>
 #include <oxherdcpp/actor/message/message.h>
+#include <oxherdcpp/common/helper_macros.h>
+#include <oxherdcpp/common/memory.h>
 
 namespace oxherdcpp
 {
@@ -165,4 +165,4 @@ auto CreateLogBuilder(const LogLevel level, SourceLocation location, Args &&...a
 #define LOG_ERROR(...) LOG_INTERNAL(LogLevel::ERROR, __VA_ARGS__)
 
 #define LOG_CRITICAL(...) LOG_INTERNAL(LogLevel::CRITICAL, __VA_ARGS__)
-} // namespace alarm_manager
+} // namespace oxherdcpp

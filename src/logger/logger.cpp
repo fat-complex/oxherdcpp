@@ -28,4 +28,4 @@ auto GlobalLoggingSystem::IsInitialized() -> bool
 {
     return logger_ != nullptr;
 }
-} // namespace alarm_manager
+} // namespace oxherdcpp

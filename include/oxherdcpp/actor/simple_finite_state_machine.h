@@ -37,4 +37,4 @@ template <typename Derived, typename... States> class GeneralFiniteStateMachine 
         return std::get_if<U>(this) != nullptr;
     }
 };
-} // namespace alarm_manager
+} // namespace oxherdcpp
