@@ -26,18 +26,26 @@ auto Actor::Receive(MPtr<BaseMessage> message) -> void
     {
         boost::asio::post(strand_, std::move(completion_token));
     }
-    catch (std::exception &e)
+    catch (const boost::system::system_error &e)
     {
-        LOG_CRITICAL("Failed to receive message from actor")
+        LOG_CRITICAL("Boost system error in post")
             .SetActorId(GetId())
             .SetActorName(GetName())
             .AddContext("exception message", e.what());
+        std::terminate();
+    }
+    catch (std::exception &e)
+    {
+        LOG_CRITICAL("Standart exception in post")
+            .SetActorId(GetId())
+            .SetActorName(GetName())
+            .AddContext("exception message", e.what());
+        std::terminate();
     }
     catch (...)
     {
-        LOG_CRITICAL("Unknown exception by failed to receive message from actor")
-            .SetActorId(GetId())
-            .SetActorName(GetName());
+        LOG_CRITICAL("Unknown exception in post").SetActorId(GetId()).SetActorName(GetName());
+        std::terminate();
     }
 }
 
