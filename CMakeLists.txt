@@ -32,37 +32,37 @@ endif()
 option(ACTOR_ENABLE_INSTALL "Enable install and package config" OFF)
 
 if(ACTOR_ENABLE_INSTALL)
-include(GNUInstallDirs)
-include(CMakePackageConfigHelpers)
+    include(GNUInstallDirs)
+    include(CMakePackageConfigHelpers)
 
-install(
-    TARGETS oxherdcpp
-    EXPORT oxherdcpp-targets
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
-    INCLUDES
-    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    install(
+        TARGETS oxherdcpp
+        EXPORT oxherdcpp-targets
+        ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+        RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+        INCLUDES
+        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+    install(DIRECTORY include/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-configure_package_config_file(
-    cmake/oxherdcpp-config.cmake.in
-    ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config.cmake
-    INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/oxherdcpp)
+    configure_package_config_file(
+        cmake/oxherdcpp-config.cmake.in
+        ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config.cmake
+        INSTALL_DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/oxherdcpp)
 
-write_basic_package_version_file(
-    ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config-version.cmake
-    VERSION ${PROJECT_VERSION}
-    COMPATIBILITY SameMajorVersion)
+    write_basic_package_version_file(
+        ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config-version.cmake
+        VERSION ${PROJECT_VERSION}
+        COMPATIBILITY SameMajorVersion)
 
-install(
-    EXPORT oxherdcpp-targets
-    FILE oxherdcpp-targets.cmake
-    NAMESPACE oxherdcpp::
-    DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/oxherdcpp)
-
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config.cmake
-              ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config-version.cmake
+    install(
+        EXPORT oxherdcpp-targets
+        FILE oxherdcpp-targets.cmake
+        NAMESPACE oxherdcpp::
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/oxherdcpp)
+
+    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config.cmake
+                  ${CMAKE_CURRENT_BINARY_DIR}/oxherdcpp-config-version.cmake
+            DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/oxherdcpp)
 endif()
