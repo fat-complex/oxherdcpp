@@ -35,9 +35,9 @@ class ActorContext
     {
         auto factory{[this, name = std::move(name), actor_id = ActorIDGenerator::Generate(),
                       ... args = std::forward<Args>(args)]() mutable {
-            return CreateActor<ActorType>(std::move(name), actor_id, std::move(args)...);
+            return CreateActor<ActorType>(name, actor_id, std::forward<decltype(args)>(args)...);
         }};
-        auto  shared_factory{MakeSptr<decltype(factory)>(std::move(factory))};
+        auto shared_factory{MakeSptr<decltype(factory)>(std::move(factory))};
 
         std::function<Sptr<Actor>()> copyable_factory{[shared_factory]() mutable { return (*shared_factory)(); }};
         return SpawnChildImpl(std::move(copyable_factory), std::move(supervision_strategy));
