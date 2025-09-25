@@ -66,8 +66,6 @@ auto BoostLogger::Log(const MPtr<LogMessage> &log_message) -> void
             log_obj["level"] = logging::trivial::to_string(ConvertLogLevel(log_message->level));
             log_obj["message"] = log_message->message;
 
-            log_obj["service"] = {{"name", "alarm-manager-ecs"}, {"version", "0.1.0"}};
-
             log_obj["source"] = {{"file", log_message->location.file.data()},
                                  {"line", log_message->location.line},
                                  {"function", log_message->location.function.data()}};
