@@ -3,6 +3,7 @@
 #include <memory>
 #include <string>
 #include <thread>
+#include <utility>
 
 #include <oxherdcpp/actor/actor.h>
 #include <oxherdcpp/actor/actor_ref.h>
@@ -13,18 +14,10 @@ using namespace std::chrono_literals;
 
 namespace ox = oxherdcpp;
 
-// User-defined message
-template <typename T> struct PrintMessageBase : ox::Message<T>
+struct PrintMessage final : ox::Message<PrintMessage>
 {
     std::string text;
-    explicit PrintMessageBase(std::string t) : text(std::move(t))
-    {
-    }
-};
-
-struct PrintMessage final : PrintMessageBase<PrintMessage>
-{
-    using PrintMessageBase::PrintMessageBase;
+    explicit PrintMessage(std::string  text): text{std::move(text)} {}
 };
 
 // Minimal actor that prints received a message
