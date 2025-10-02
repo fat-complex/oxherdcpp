@@ -7,10 +7,10 @@ namespace oxherdcpp
 
 class MessageDispatcher
 {
+  public:
     template <typename MessageType> using Handler = std::function<void(const MPtr<MessageType> &message)>;
     using HandlerMap = std::unordered_map<MessageTypeID, Handler<BaseMessage>>;
 
-  public:
     MessageDispatcher() = default;
 
     template <typename MessageType> auto RegisterHandler(Handler<MessageType> handler) -> MessageDispatcher &
